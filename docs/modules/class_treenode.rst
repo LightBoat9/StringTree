@@ -10,6 +10,11 @@ TreeNode
 
 **Module:** :ref:`string_tree <module_string_tree>`
 
+.. _treenode.note:
+
+.. note:: in this class "path" always refers to a string of the titles of each node joined by a period.
+    Example: "Grandparent.Parent.Child" is a path to the "Child" TreeNode
+
 Brief Description
 -----------------
 
@@ -48,9 +53,6 @@ Description
 A node in the :ref:`Tree <tree>` that holds references to this nodes :ref:`parent <treenode.parent>`, biological and
 adopted :ref:`children <treenode.children>` and this nodes :ref:`string <treenode.string>` contents.
 
-.. note:: in this class path always refers to a string of the titles of each node joined by a period.
-    Example: "Grandparent.Parent.Child" is a path to the child TreeNode
-
 Instance Variables
 ------------------
 
@@ -72,7 +74,7 @@ Instance Variables
 
 .. _treenode.title:
 
-- **str title -** The title that describes this node.
+- **str title -** The title that describes this node. This is used in the path to access the node. See :ref:`note <treenode.note>`
 
 .. _treenode.string:
 
@@ -98,19 +100,19 @@ Returns the path to this node.
 - :ref:`TreeNode <treenode>` **add_child ( str title, str string )**
 
 Creates a TreeNode with the ``title`` and ``string`` and adds it as a
-child to this node and appends it to this nodes :ref:`tree <treenode.tree>`.
+child to this node and appends it to this nodes :ref:`tree <treenode.tree>` .
 
 .. _treenode.get_child:
 
 - :ref:`TreeNode <treenode>` **get_child ( str title )**
 
-Returns the child of this node with the ``title``.
+Returns the child of this node with the ``title`` .
 
 .. _treenode.remove_child:
 
 - :ref:`TreeNode <treenode>` **remove_child ( str title )**
 
-Removes and returns the child of this node with the ``title``. This will append all of the children of the
+Removes and returns the child of this node with the ``title`` . This will append all of the children of the
 removed node as children of this node.
 
 .. _treenode.get_biological_children:

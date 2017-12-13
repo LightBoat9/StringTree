@@ -35,7 +35,7 @@ class TreeNode(object):
                 self.children == other.children)
 
     def get_path(self):
-        """Returns the path to this node"""
+        """Returns the path to this node."""
         path = []
         node = self
         while node is not self.tree.root:
@@ -45,7 +45,7 @@ class TreeNode(object):
         return ".".join(path)
 
     def add_child(self, title, string):
-        """Adds a child to this node and to this nodes tree"""
+        """Adds a child to this node and to this nodes tree."""
         path = self.get_path()
         if path:
             path += "." + title
@@ -58,7 +58,7 @@ class TreeNode(object):
         return child
 
     def get_child(self, title):
-        """Returns the child of this node with the title"""
+        """Returns the child of this node with the title."""
         kid = None
         for i in self.children:  # Find the child by title
             if i.title == title:
@@ -88,7 +88,7 @@ class TreeNode(object):
         return kid
 
     def get_biological_children(self):
-        """Returns a list of this nodes children that are directly created from this node"""
+        """Returns a list of this nodes children that are directly created from this node."""
         return [child for child in self.children if child.parent is self]
 
     def add_adopted_child(self, child):
@@ -191,12 +191,13 @@ class Tree(object):
         return "\n".join([str(node) for node in self.tree])
 
     def add_node(self, path, title, string):
-        """Creates a node using the title and string, and adds it to the parent node path"""
+        """Creates a node using the title and string, and adds it to the parent node path."""
         parent = self.get_node(path)
         kid = TreeNode(self, parent, title, string)
         return kid
 
     def get_node(self, path):
+        """Returns the TreeNode at the path."""
         parents = path.split(".")
         tree_node = None
         for i in self.tree:  # Get the first node in path
@@ -213,6 +214,9 @@ class Tree(object):
         return tree_node
 
     def remove_node(self, path):
+        """Removes and returns the node at the path. This will add the children of the node as children of the
+        nodes parent. Note that if one of the children of this node is the same as a child of the parents node it
+        will raise a ValueError."""
         tree_node = self.get_node(path)
         if tree_node is self.root:
             raise ValueError("Can not remove tree root")
@@ -226,12 +230,16 @@ class Tree(object):
         return tree_node
 
     def get_children(self, path):
+        """Returns the children of the TreeNode at path."""
         return self.get_node(path).children
 
     def get_biological_children(self, path):
+        """Returns the node at path's children that are directly created from the node."""
         return self.get_node(path).get_biological_children()
 
     def add_adopted_child(self, path, child):
+        """Adds an adopted child to the node at path. This is a node that already
+        exists as a child of another node but is also the indirect child of this node"""
         first = self.get_node(path)
         second = self.get_node(child)
         if second in first.children:
@@ -242,9 +250,12 @@ class Tree(object):
         second.adoptive_parents.append(first)
 
     def get_adopted_children(self, path):
+        """Returns the node at path's children that are not created from the node, but are added to this node
+        using add_adopted_child ( ) from the Tree or TreeNode."""
         return self.get_node(path).get_adopted_children()
 
     def remove_adopted_child(self, path, child):
+        """Removes and returns the adopted child from the node at path. Child is the path to the existing child."""
         first = self.get_node(path)
         second = self.get_node(child)
         if first is second.parent:
@@ -253,9 +264,13 @@ class Tree(object):
         second.adoptive_parents.remove(first)
 
     def get_lineage(self, path):
+        """Returns the lineage of the node at path. This includes all biological children,
+        their biological children, and so on."""
         return self.get_node(path).get_lineage()
 
     def remove_lineage(self, path):
+        """Removes and returns the lineage of the node at path. This includes all biological children,
+        their biological children, and so on."""
         tree_node = self.get_node(path)
         lineage = tree_node._remove_lineage()
         self.tree = [i for i in self.tree if i not in lineage]
