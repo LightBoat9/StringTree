@@ -5,7 +5,7 @@ setup (
     version='0.0.0',
     description='Tree system for storing strings',
 
-    url='https://github.com/LightBoat9',
+    url='https://github.com/LightBoat9/stringtree',
 
     author='Luke Sloop',
     author_email='sloopluke@gmail.com',
