@@ -246,6 +246,8 @@ class Tree(object):
         second = self.get_node(child)
         if second in first.children:
             raise ValueError("Child already connected to this node")
+        if second.title in [node.title for node in first.children]:
+            raise ValueError("Node of the same title already a child of this node")
         if second is self.root:
             raise ValueError("Can not connect node to root")
         first.children.append(second)
