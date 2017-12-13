@@ -18,7 +18,8 @@ TreeNode
 Brief Description
 -----------------
 
-Represents a simple tree system for a non-linear parent-child string system such as a dialogue system.
+A node in the :ref:`Tree <tree>` that holds references to this nodes :ref:`parent <treenode.parent>`, biological and
+adopted :ref:`children <treenode.children>` and this nodes :ref:`string <treenode.string>` contents.
 
 Instance Methods
 ----------------
@@ -66,7 +67,7 @@ Instance Variables
 
 .. _treenode.adoptive_parents:
 
-- **list adoptive_parents -** A list of this nodes adoptive parents TreeNodes, these are nodes that are not the direct parent of this node but still are connected as a parent.
+- **list adoptive_parents -** A list of this nodes adoptive parent TreeNodes, these are nodes that are not the direct parent of this node but still are connected as a parent.
 
 .. _treenode.children:
 

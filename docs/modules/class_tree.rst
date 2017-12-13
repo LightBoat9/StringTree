@@ -30,6 +30,8 @@ Instance Methods
 +---------------------------+------------------------------------------------------------------------------------------+
 | :ref:`TreeNode <treenode>`| :ref:`remove_node <tree.remove_node>` ( str path )                                       |
 +---------------------------+------------------------------------------------------------------------------------------+
+| str                       | :ref:`get_string <tree.get_string>` ( str path )                                         |
++---------------------------+------------------------------------------------------------------------------------------+
 | list                      | :ref:`get_children <tree.get_children>` ( str path )                                     |
 +---------------------------+------------------------------------------------------------------------------------------+
 | list                      | :ref:`get_biological_children <tree.get_biological_children>` ( str path )               |
@@ -90,6 +92,12 @@ Returns the TreeNode at the ``path``
 Removes and returns the node at the ``path``. This will add the children of the node as children of the
 nodes parent. Note that if one of the children of this node is the same as a child of the parents node it
 will raise a ValueError
+
+.. _tree.get_string:
+
+- **str get_string ( str path )**
+
+Returns the contents of the TreeNode at path.
 
 .. _tree.get_children:
 
