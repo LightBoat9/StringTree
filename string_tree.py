@@ -47,9 +47,7 @@ class TreeNode(object):
     def add_child(self, title, string):
         """Adds a child to this node and to this nodes tree."""
         path = self.get_path()
-        if path:
-            path += "." + title
-        else:
+        if not path:
             path = self.tree.root.title
         return self.tree.add_node(path, title, string)
 
@@ -210,7 +208,7 @@ class Tree(object):
         for i in parents:  # Loop through the path
             tree_node = tree_node.get_child(i)
             if not tree_node:
-                raise ValueError("Node does not exist, possibly invalid path")
+                raise ValueError('Node at "' + path + '" does not exist, possibly invalid path')
         return tree_node
 
     def remove_node(self, path):
@@ -228,6 +226,10 @@ class Tree(object):
         parent._remove_child(tree_node.title)
         self.tree.remove(tree_node)
         return tree_node
+
+    def get_string(self, path):
+        """Returns the contents of the TreeNode at path."""
+        return self.get_node(path).string
 
     def get_children(self, path):
         """Returns the children of the TreeNode at path."""
